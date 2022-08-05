@@ -1,9 +1,13 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import { useParticalAccount } from "@partical/react-partical";
+import { Box, Button, IconChevronUp, IconEth, Stack } from "degen";
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import { CopyBlock, atomOneDark, dracula } from "react-code-blocks";
+import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
+  const { connect, isAuthenticating, profile, logout } = useParticalAccount();
   return (
     <div className={styles.container}>
       <Head>
@@ -14,59 +18,54 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Welcome to <a href="">Partical</a> + <a href="">wagmi</a> +{" "}
+          <a href="https://nextjs.org">Next.js!</a>
         </h1>
-
         <p className={styles.description}>
-          Get started by editing{' '}
+          Get started by editing{" "}
           <code className={styles.code}>pages/index.tsx</code>
         </p>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+        <div className={styles.content}>
+          <Stack align="center">
+            {!profile ? (
+              <Button
+                prefix={<IconEth />}
+                variant="secondary"
+                loading={isAuthenticating}
+                onClick={() => {
+                  connect();
+                }}
+              >
+                Sign in with Ethereum
+              </Button>
+            ) : (
+              <Button
+                variant="secondary"
+                loading={isAuthenticating}
+                onClick={() => {
+                  logout();
+                }}
+              >
+                Logout
+              </Button>
+            )}
+            <Box>{profile && profile.username + " Connected"}</Box>
+            <CopyBlock
+              text={`
+              const { profile , connect, isAuthenticating } = useParticalAccount();
+              const { schema , createData , getDataById , updateDataById, getAllData } = useParticalSchema(:SchemaId);
+            `}
+              language="jsx"
+              showLineNumbers={false}
+              codeBlock
+              theme={dracula}
+            />
+          </Stack>
         </div>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
