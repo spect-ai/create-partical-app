@@ -1,6 +1,6 @@
 {
   "name": "@partical/create-partical-app",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "bin": "./bin/cli.js",
   "scripts": {
     "dev": "concurrently \"next dev -p 3001\" \"local-ssl-proxy --source 3000 --target 3001\"",
