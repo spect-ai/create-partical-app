@@ -14,7 +14,7 @@ const runCommand = (command) => {
 
 const appName = process.argv[2];
 const gitCheckoutCommand = `git clone https://github.com/spect-ai/create-partical-app ${appName}`;
-const installDependenciesCommand = `cd ${appName} && npm install`;
+const installDependenciesCommand = `cd ${appName} && yarn`;
 
 console.log(`Creating a new Partical app in ${appName}...`);
 const checkoutOut = runCommand(gitCheckoutCommand);
@@ -25,4 +25,4 @@ const installedDeps = runCommand(installDependenciesCommand);
 if (!installedDeps) process.exit(-1);
 
 console.log(`Congratulations! Your Partical app is ready!`);
-console.log(`To start your app, run: cd ${appName} && npm start`);
+console.log(`To start your app, run: cd ${appName} && yarn dev`);

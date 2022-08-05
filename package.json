@@ -1,9 +1,9 @@
 {
-  "name": "@partical/partical-template-1",
-  "version": "0.1.0",
+  "name": "@partical/create-partical-app",
+  "version": "0.0.1",
   "bin": "./bin/cli.js",
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently \"next dev\" \"local-ssl-proxy --source 3001 --target 3000\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -27,6 +27,7 @@
     "@types/node": "18.6.4",
     "@types/react": "18.0.15",
     "@types/react-dom": "18.0.6",
+    "concurrently": "^7.3.0",
     "eslint": "8.21.0",
     "eslint-config-next": "12.2.4",
     "local-ssl-proxy": "^1.3.0",
