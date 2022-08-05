@@ -1,5 +1,5 @@
 {
-  "name": "partical-template-1",
+  "name": "@partical/partical-template-1",
   "version": "0.1.0",
   "bin": "./bin/cli.js",
   "scripts": {
