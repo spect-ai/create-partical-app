@@ -1,16 +1,16 @@
 {
   "name": "@partical/create-partical-app",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "bin": "./bin/cli.js",
   "scripts": {
-    "dev": "concurrently \"next dev\" \"local-ssl-proxy --source 3001 --target 3000\"",
+    "dev": "concurrently \"next dev -p 3001\" \"local-ssl-proxy --source 3000 --target 3001\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@babel/core": "^7.18.10",
-    "@partical/react-partical": "0.0.3",
+    "@partical/react-partical": "0.0.5",
     "@rainbow-me/rainbowkit": "^0.4.5",
     "@tanstack/react-query": "^4.0.10",
     "degen": "^0.0.98",

@@ -7,8 +7,8 @@ import "degen/styles";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider defaultMode="dark" defaultAccent="blue">
-      <ParticalClientProvider particalClientUri="https://test1.partical.xyz">
-        <Component {...pageProps} />;
+      <ParticalClientProvider particalClientUri="https://testapp1.partical.xyz">
+        <Component {...pageProps} />
       </ParticalClientProvider>
     </ThemeProvider>
   );
