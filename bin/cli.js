@@ -16,7 +16,7 @@ const appName = process.argv[2];
 const gitCheckoutCommand = `git clone https://github.com/spect-ai/create-partical-app ${appName}`;
 const installDependenciesCommand = `cd ${appName} && yarn`;
 
-console.log(`Creating a new Partical app!! in ${appName}...`);
+console.log(`Creating a new Partical app! in ${appName}...`);
 const checkoutOut = runCommand(gitCheckoutCommand);
 if (!checkoutOut) process.exit(-1);
 
